@@ -2,12 +2,11 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-const Navbar = () => {
+const Navbar = ({ onLogout }) => {
   const [open, setOpen] = useState(false);
   const toggleMenu = () => setOpen(!open);
 
   const navItems = [
- 
     "Accounts",
     "Cards",
     "Savings",
@@ -39,10 +38,20 @@ const Navbar = () => {
               role="button"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
+                  if (item === "Logout") {
+                    onLogout();
+                  } else {
+                    alert(`Navigate to: ${item}`);
+                  }
+                }
+              }}
+              onClick={() => {
+                if (item === "Logout") {
+                  onLogout();
+                } else {
                   alert(`Navigate to: ${item}`);
                 }
               }}
-              onClick={() => alert(`Navigate to: ${item}`)}
             >
               {item}
             </li>
