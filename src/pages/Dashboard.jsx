@@ -220,28 +220,92 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0); 
+  // useEffect(() => {
+  //   window.scrollTo(0, 0); 
 
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUserData(decoded);
-      } catch (err) {
-        console.error("Invalid token:", err);
-        localStorage.removeItem("token");
-        navigate("/login");
-      }
-    } else {
-      navigate("/login");
-    }
-  }, [navigate]);
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     try {
+  //       const decoded = jwtDecode(token);
+  //       setUserData(decoded);
+  //       console.log(setUserData);
+        
+  //     } catch (err) {
+  //       console.error("Invalid token:", err);
+  //       localStorage.removeItem("token");
+  //       navigate("/login");
+  //     }
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  // 22
+//   useEffect(() => {
+//   window.scrollTo(0, 0);
+
+//   const token = localStorage.getItem("token");
+//   if (token) {
+//     try {
+//       const decoded = jwtDecode(token);
+//       setUserData(decoded);
+//       console.log(decoded); // ✅ Debugging the actual data
+//     } catch (err) {
+//       console.error("Invalid token:", err);
+//       localStorage.removeItem("token");
+//       navigate("/login");
+//     }
+//   } else {
+//     navigate("/login");
+//   }
+// }, [navigate]);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    navigate("/login");
+    return;
+  }
+
+  try {
+    const decoded = jwtDecode(token);
+    console.log(decoded); // userId, iat, exp
+
+    fetch("https://os-project-server.vercel.app/auth/users", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch users");
+        return res.json();
+      })
+      .then((users) => {
+        const currentUser = users.find((u) => u._id === decoded.userId);
+        if (!currentUser) {
+          // User not found in the list, force logout or redirect
+          localStorage.removeItem("token");
+          navigate("/login");
+          return;
+        }
+        setUserData(currentUser);
+      })
+      .catch((err) => {
+        console.error("Error fetching user:", err);
+        localStorage.removeItem("token");
+        navigate("/login");
+      });
+  } catch (err) {
+    console.error("Invalid token:", err);
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+}, [navigate]);
+
 
   const navOptions = [
     { title: "Accounts", icon: <Banknote className="w-12 h-12 text-green-600" />, desc: "View your account balance and details", path: "/accounts" },
@@ -254,7 +318,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar onLogout={handleLogout} />
+    <Navbar onLogout={handleLogout} userData={userData} />
+
+      {/* <Navbar onLogout={handleLogout}  /> */}
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-[#0a0f1c] dark:to-[#111827] text-gray-800 dark:text-white transition-all duration-500 ease-in-out pt-20 px-6">
        
@@ -262,12 +328,16 @@ const Dashboard = () => {
           <h1 className="text-5xl font-extrabold mb-4">
             🏦 Welcome to Avien Bank
           </h1>
-          {userData && (
-            <p className="text-lg text-gray-800 dark:text-gray-300 mb-4">
-              Logged in as <span className="font-semibold">{userData.name || "User"}</span>  
-              {userData.email && ` (${userData.email})`}
-            </p>
-          )}
+         {userData && (
+  <p className="text-lg text-gray-800 dark:text-gray-300 mb-4">
+    Logged in as{" "}
+    <span className="font-semibold">
+      {userData.username || userData.name || "User"}
+    </span>
+    {userData.email && ` (${userData.email})`}
+  </p>
+)}
+
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
             Secure, smart banking made simple. Navigate to the sections below to manage your finances.
           </p>
