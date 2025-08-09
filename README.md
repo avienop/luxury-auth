@@ -53,7 +53,3 @@ Once you log in with the correct credentials, you should see the username and em
 
 Clicking the Logout button will clear the stored token, redirecting you back to the login page.
 
-## Notes
-The token is stored in localStorage for session management.
-
-Errors during the login process are logged in the console, and users will be notified through an alert if the login fails.
