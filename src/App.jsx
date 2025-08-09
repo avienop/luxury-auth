@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/Login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
