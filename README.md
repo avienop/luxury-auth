@@ -39,7 +39,7 @@ After successful authentication, the user is taken to the dashboard/welcome page
 ## Logout
 When the user clicks the Logout button, the stored token is cleared from localStorage, and they are redirected back to the login page.
 
-Key Components
+## Key Components
 LoginForm: Handles the user login process, sending credentials to the API, and storing the JWT token upon successful login.
 
 DashboardPage: Displays the decoded token data (like the username and email) after a successful login.
