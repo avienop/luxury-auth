@@ -1,6 +1,6 @@
 export default function AuthForm({ title, children }) {
   return (
-    <div className="w-full max-w-md p-8 bg-white rounded shadow-md">
+    <div className="dark:bg-[#1e293b] rounded-xl shadow-xl p-8 w-full">
       <h2 className="text-2xl font-bold mb-6 text-center">{title}</h2>
       {children}
     </div>

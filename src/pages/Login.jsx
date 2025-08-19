@@ -45,13 +45,13 @@ export default function Login() {
   return (
     <>
       
-<nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-br from-blue-50 via-white to-green-50 shadow-md">
+<nav className="fixed max-h-full top-0 left-0 w-full z-50 bg-gradient-to-br from-blue-50 via-white to-green-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-start items-center">
           <h1 className="text-2xl font-bold">Avien Bank</h1>
         </div>
       </nav>
 
-      <div className="min-h-screen w-full bg-gradient-to-br from-blue-500 via-white to-green-500 dark:from-[#020617] dark:via-[#0b1120] dark:to-[#0f172a] text-gray-800 dark:text-gray-100 pt-20 px-0 flex flex-col md:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
+      <div className="min-h-screen w-full bg-gradient-to-br from-blue-500 via-white to-green-500 dark:from-[#020617] dark:via-[#0b1120] dark:to-[#0f172a] text-gray-800 dark:text-gray-100 pt-20 px-0 flex flex-col md:flex-row items-center justify-center gap-12  mx-auto">
         <div className="md:w-1/2 max-w-md text-center md:text-left">
           <h2 className="text-4xl font-extrabold mb-6">Welcome Back!</h2>
           <p className="text-lg text-gray-700 dark:text-gray-200 mb-4">

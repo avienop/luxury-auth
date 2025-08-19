@@ -51,7 +51,7 @@ export default function Register() {
         </div>
       </nav>
 
-      <div className="min-h-screen w-full  bg-gradient-to-br from-blue-500 via-indigo-50 to-green-500 dark:from-[#020617] dark:via-[#0b1120] dark:to-[#0f172a] text-gray-800 dark:text-gray-100 pt-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12 max-w-7xl mx-auto">
+      <div className="min-h-screen w-full bg-gradient-to-br from-blue-500 via-indigo-50 to-green-500 dark:from-[#020617] dark:via-[#0b1120] dark:to-[#0f172a] text-gray-800 dark:text-gray-100 pt-20 px-6 flex flex-col md:flex-row items-center justify-center gap-12 mx-auto">
        
         <div className="md:w-1/2 max-w-md text-center md:text-left">
           <h2 className="text-4xl font-extrabold mb-6">Join Avien Bank Today!</h2>
