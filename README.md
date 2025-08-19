@@ -1,55 +1,87 @@
-# React + Vite
+# Avien Bank - Authentication App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple authentication-based web app built with React, Vite, Tailwind CSS, and DaisyUI.
+It includes Login, Register, Forgot Password (OTP via Email), Change Password, and Dashboard with Logout features.
 
-Currently, two official plugins are available:
+# Setup Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ # Clone the repo
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+git clone https://github.com/your-username/avien-bank-auth.git
+cd avien-bank-auth
 
 
-## Authentication System with Token Handling
-This project is a React-based authentication system that connects to an external API to handle user login. Upon successful login, the system receives a JWT token, which is stored and decoded to display user-specific data. This data is then shown on a welcome/dashboard screen. The system is designed to be clean, functional, and responsive, ensuring a smooth experience on both desktop and mobile devices.
+# Install dependencies
 
-## Features
-Login Form: Users can log in by entering their username and password.
+npm install
 
-Token Management: After successful authentication, the system securely stores the JWT token and decodes it to extract essential user information.
 
-Welcome Screen: After decoding the token, the user is redirected to a welcome screen displaying their username and email.
+# Run the development server
 
-Logout Functionality: The user can log out, clearing the stored token and redirecting them back to the login page.
+npm run dev
 
-Responsive Design: The app is fully responsive, built with Tailwind CSS, to ensure it works seamlessly across different devices.
 
-## How it Works
-## Login
-Users begin by entering their username and password in the login form. After submitting the credentials, the app sends them to the API for authentication. If the login is successful, the API returns a JWT token. This token is stored in the browser's localStorage for future use.
+Open in browser → http://localhost:5173
 
-## Token Handling
-Once the token is securely stored, the system decodes it to retrieve important user data, like their username and email. This information is displayed on the welcome screen once the user is redirected.
+🔑 Authentication Flow
+# Login
 
-## Welcome Screen
-After successful authentication, the user is taken to the dashboard/welcome page, where their username and email are shown. This page serves as the user's main hub after logging in.
+User enters email & password.
 
-## Logout
-When the user clicks the Logout button, the stored token is cleared from localStorage, and they are redirected back to the login page.
+If credentials are correct → redirected to Dashboard.
 
-## Key Components
-LoginForm: Handles the user login process, sending credentials to the API, and storing the JWT token upon successful login.
+If invalid → error message shown.
 
-DashboardPage: Displays the decoded token data (like the username and email) after a successful login.
+# Dashboard
 
-Logout: Clears the stored token and redirects the user back to the login screen.
+Displays a simple welcome message + navigation bar.
 
-Token Decoding: Decodes the JWT token to extract and display user-specific data on the welcome page.
+Navbar includes:
 
-## Testing the Application
-Once you log in with the correct credentials, you should see the username and email displayed on the welcome screen. If the login fails, an error message will appear.
+Dashboard (home)
 
-Clicking the Logout button will clear the stored token, redirecting you back to the login page.
+Logout button → clears session and redirects to login
 
+#  Forgot Password → OTP → Change Password
+
+If user forgets password:
+
+Enter registered email → OTP sent.
+
+Redirected to Change Password page with email pre-filled.
+
+Enter OTP + new password → updates password.
+
+Redirect back to Login page.
+
+# Testing the App
+
+# Login Test
+
+Use a valid email & password → should go to Dashboard.
+
+Invalid credentials → should show error.
+
+# Forgot Password Test
+
+Go to Forgot Password → enter email.
+
+Check your email inbox for OTP.
+
+# On Change Password page → enter email, OTP, and new password.
+
+Try logging in with new password.
+
+# Logout Test
+
+Click Logout in Dashboard navbar.
+
+Should redirect back to Login page.
+
+# Tech Stack
+
+Frontend: React, Vite, Tailwind CSS, DaisyUI
+
+Backend API: Node.js + Express (hosted on Vercel)
+
+Authentication: Email + Password, OTP for Reset
